@@ -32,7 +32,6 @@ library(class)
 kk <- 3
 ypred2.train <- knn(train = filteredTrain[,-1], test = filteredTrain[,-1], cl = filteredTrain[,1], k = kk)
 
-
 # Calculating mean error rates
 meanErrorLinearRegression <- mean(y1pred.train != filteredTrain[,1])
 meanErrorKNN3 <- mean(ypred2.train != filteredTrain[,1])
