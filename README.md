@@ -16,7 +16,7 @@
 
 ## 1. Problem Statement
 
-Accurately classifying handwritten digits is a foundational challenge in image recognition and optical character recognition systems. This project explores how machine learning can distinguish between visually similar digits—specifically, '5' and '6'—using pixel intensity data. The goal is to evaluate and compare the performance of simple and intuitive models such as Linear Regression and K-Nearest Neighbors (KNN), and to identify which provides the best accuracy with minimal variance. Beyond raw performance, the project emphasizes generalizability and model interpretability to support broader image classification tasks in real-world applications such as postal automation, check processing, and document digitization.
+Accurately classifying handwritten digits is a foundational challenge in image recognition and optical character recognition systems. This project explores how machine learning can distinguish between visually similar digits, specifically '5' and '6', using pixel intensity data. The goal is to evaluate and compare the performance of simple and intuitive models such as Linear Regression and K-Nearest Neighbors (KNN), and to identify which provides the best accuracy with minimal variance. Beyond raw performance, the project emphasizes generalizability and model interpretability to support broader image classification tasks in real-world applications such as postal automation, check processing, and document digitization.
 
 ---
 
@@ -44,7 +44,7 @@ This nearly balanced dataset prevents bias and ensures reliable training and eva
 ## 4. Exploratory Data Analysis (EDA)
 
 - **Pixel Distribution**: Border pixels typically have values near -1, indicating empty space, while central pixels capture digit strokes
-- **Class Balance**: 556 samples of digit '5' and 664 of digit '6'—nearly balanced, reducing risk of model bias
+- **Class Balance**: 556 samples of digit '5' and 664 of digit '6', nearly balanced, reducing risk of model bias
 - **Informative Pixels**: Most classification signal lies in the central grid region; peripheral pixels are less helpful
 
 EDA established a clear understanding of data structure and helped inform modeling expectations, especially around the potential for overfitting based on pixel location relevance.
@@ -56,7 +56,7 @@ EDA established a clear understanding of data structure and helped inform modeli
 Two models were evaluated:
 
 - **Linear Regression** (used here as a classification proxy by thresholding predictions)
-- **K-Nearest Neighbors (KNN)**: Evaluated for k = 1 through 15
+- **K-Nearest Neighbors (KNN)**, evaluated for k = 1 through 15
 
 Key considerations:
 
@@ -71,8 +71,8 @@ Key considerations:
 
 The models were evaluated using:
 
-- **Mean Testing Error**: Measures misclassification rate on unseen data
-- **Variance of Testing Error**: Measures stability across random splits
+- **Mean Testing Error**, which measures misclassification rate on unseen data
+- **Variance of Testing Error**, which measures stability across random splits
 
 ### Mean Testing Error by Model
 
@@ -107,6 +107,10 @@ The models were evaluated using:
 ## 7. Outcome
 
 The best-performing model was **K-Nearest Neighbors with k = 3**, achieving the lowest mean testing error (0.00870) and low variance. It provided the strongest balance between overfitting and underfitting, generalizing well to unseen data. Linear Regression also performed reasonably well, with a mean error of 0.02530, though it lacked the flexibility to capture the pixel-based patterns as effectively as KNN.
+
+Linear Regression underperformed in part because it is not designed for binary classification tasks and assumes linear separability. It is less capable of modeling non-linear decision boundaries, which limits its effectiveness when applied to spatial pixel data.
+
+Although Logistic Regression would have been a more theoretically appropriate choice for binary classification, this project used Linear Regression as a simple benchmark for comparison. Including Logistic Regression in future work could help establish a more robust baseline.
 
 Further testing on a separate holdout dataset of 330 new observations confirmed the KNN model's robustness, with an even lower mean error of 0.0030.
 
